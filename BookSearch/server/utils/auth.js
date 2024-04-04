@@ -22,10 +22,6 @@ module.exports = {
       token = token.split(" ").pop().trim();
     }
 
-    // if (!token) {
-    //   return res.status(400).json({ message: "You have no token!" });
-    // }
-
     if (!token) {
       return req;
     }
@@ -39,8 +35,6 @@ module.exports = {
       console.log("Invalid token");
     }
 
-    // send to next endpoint
-    // next();
     return req;
   },
   signToken: function ({ username, email, _id }) {
