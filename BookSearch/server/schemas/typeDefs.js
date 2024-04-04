@@ -1,8 +1,8 @@
-const typeDefs = `
+const typeDefs = `#graphql
   type Book {
     authors: [String]
     description: String!
-    bookId: String!
+    bookId: ID!
     image: String
     link: String
     title: String!
@@ -17,7 +17,7 @@ bookCount: Int
   }
 
   type Query {
-    me: [User]
+    me: User
   }
 
   type Auth {
@@ -25,11 +25,20 @@ bookCount: Int
     user: User
   }
 
+  input BookInput{
+  authors:[String!]!
+  description: String
+  title: String!
+  bookId: String!
+  image: String
+  link: String
+  }
+
   type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    saveBook([authors], description: String, title: String!, bookId: String!, image: String, link: String): User
-    removeBook(bookId: String!): User
+    login(email: String!, password: String!): Auth!
+    addUser(username: String!, email: String!, password: String!): Auth!
+    saveBook(book: BookInput!): User!
+    removeBook(bookId: String!): User!
   }
 `;
 
